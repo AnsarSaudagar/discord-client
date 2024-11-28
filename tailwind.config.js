@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       keyframes: {
         fadeSlideIn: {
-          '0%': { transform: 'translateY(-30px)', opacity: '0' },
+          '0%': { transform: 'translateY(-300px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
