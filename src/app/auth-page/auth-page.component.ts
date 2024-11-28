@@ -6,7 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 @Component({
   selector: 'app-auth-page',
   standalone: true,
-  imports: [RouterOutlet, SignupComponent],
+  imports: [RouterOutlet],
   templateUrl: './auth-page.component.html',
   styleUrl: './auth-page.component.css',
 })
