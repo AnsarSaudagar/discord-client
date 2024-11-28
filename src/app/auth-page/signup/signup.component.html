@@ -1,0 +1,79 @@
+<div class="h-full w-full bg-[#303338] flex flex-col items-center pt-6 overflow-auto rounded-[3px] animate-fadeSlideIn">
+    <img id="logo" class="lg:hidden" src="../../assets/images/discord_logo.svg" alt="">
+    <h1 class="text-white text-2xl font-medium mt-5">Create an account</h1>
+    <form class="w-full px-6 mt-3">
+        <div class="w-full ">
+            <label for="email-input" class="font-semibold  text-xs text-[#B5BAC0]">
+                EMAIL
+                <span class="text-[#FA767A]">*</span>
+            </label>
+            <input id="email-input"
+                class="bg-[#1E1F22] text-sm text-white focus:ring-0 block border-none w-full rounded-[4px] mt-2"
+                type="text">
+        </div>
+        <div class="w-full mt-4">
+            <label for="name-input" class="font-semibold  text-xs text-[#B5BAC0]">
+                DISPLAY NAME
+            </label>
+            <input id="name-input"
+                class="bg-[#1E1F22] text-sm text-white focus:ring-0 block border-none w-full rounded-[4px] mt-2"
+                type="text">
+        </div>
+        <div class="w-full mt-4">
+            <label for="username-input" class="font-semibold  text-xs text-[#B5BAC0]">
+                USERNAME
+                <span class="text-[#FA767A]">*</span>
+            </label>
+            <input id="username-input"
+                class="bg-[#1E1F22] text-sm text-white focus:ring-0 block border-none w-full rounded-[4px] mt-2"
+                type="text">
+        </div>
+        <div class="w-full mt-4">
+            <label for="password-input" class="font-semibold  text-xs text-[#B5BAC0]">
+                PASSWORD
+                <span class="text-[#FA767A]">*</span>
+            </label>
+            <input id="password-input"
+                class="bg-[#1E1F22] text-sm text-white focus:ring-0 block border-none w-full rounded-[4px] mt-2"
+                type="password">
+        </div>
+        <div class="w-full mt-4">
+            <label for="dob-input" class="font-semibold block text-xs text-[#B5BAC0]">
+                DATE OF BIRTH
+                <span class="text-[#FA767A]">*</span>
+            </label>
+
+            <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+                class="text-white bg-[#1E1F22] focus:outline-none  font-medium rounded-[4px] text-sm px-5 py-2.5 text-center inline-flex items-center  mt-3"
+                type="button">Month<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </button>
+
+            <div id="dropdownDivider"
+                class="z-10 hidden  divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-2 bg-[#1E1F22] text-sm text-white" aria-labelledby="dropdownDividerButton">
+                    <li class="">
+                        <a
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+        <button class="bg-[#5765F2] text-white w-full mt-4 h-10 rounded-[3px]">Continue</button>
+        <p class="text-[#04A9FB] text-sm mt-4 hover:underline cursor-pointer" (click)="onClickAlready()">Already have an
+            account?</p>
+    </form>
+</div>

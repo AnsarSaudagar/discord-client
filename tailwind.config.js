@@ -5,7 +5,17 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        fadeSlideIn: {
+          '0%': { transform: 'translateY(-30px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+      animation: {
+        fadeSlideIn: 'fadeSlideIn 0.2s ease-out',
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')
