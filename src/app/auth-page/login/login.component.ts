@@ -20,6 +20,6 @@ export class LoginComponent {
   }
 
   onClickRegister(){
-    this.router.navigate(['/signup'])
+    this.router.navigate(['auth', 'signup'])
   }
 }

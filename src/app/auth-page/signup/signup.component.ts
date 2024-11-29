@@ -15,6 +15,6 @@ export class SignupComponent {
   constructor(private router: Router) {}
 
   onClickAlready(){
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth', 'login']);
   }
 }
