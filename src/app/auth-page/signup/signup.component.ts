@@ -1,10 +1,18 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../../models/user.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   host: {
@@ -12,9 +20,36 @@ import { Router } from '@angular/router';
   },
 })
 export class SignupComponent {
-  constructor(private router: Router) {}
+  signupForm: FormGroup;
+  isSubmitted: boolean = false;
 
-  onClickAlready(){
+  constructor(private router: Router, private fb: FormBuilder) {
+    this.signupForm = fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      display_name: [''],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+    });
+  }
+
+  onContinue() {
+    this.isSubmitted = true;
+    if (this.signupForm.valid) {
+      this.isSubmitted = false;
+      const formValues: User = this.signupForm.value;
+      console.log(formValues);
+    }
+  }
+
+  onClickAlready() {
     this.router.navigate(['auth', 'login']);
+  }
+
+  getValidationCondition(input_name: string) {
+    return (
+      (this.signupForm.get(input_name)?.errors &&
+        this.signupForm.get(input_name)?.touched) ||
+      (this.signupForm.get(input_name)?.errors && this.isSubmitted)
+    );
   }
 }
