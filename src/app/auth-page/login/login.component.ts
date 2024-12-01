@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   host: {
@@ -12,14 +15,13 @@ import { Router } from '@angular/router';
   },
 })
 export class LoginComponent {
+  constructor(private router: Router, private authService: AuthService) {}
 
-  constructor(
-    private router: Router
-  ){
-
+  onClickRegister() {
+    this.router.navigate(['auth', 'signup']);
   }
+  
+  onClickLogin(){
 
-  onClickRegister(){
-    this.router.navigate(['auth', 'signup'])
   }
 }

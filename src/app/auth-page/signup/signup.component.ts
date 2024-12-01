@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -8,11 +8,13 @@ import {
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   host: {
@@ -23,10 +25,14 @@ export class SignupComponent {
   signupForm: FormGroup;
   isSubmitted: boolean = false;
 
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
     this.signupForm = fb.group({
       email: ['', [Validators.required, Validators.email]],
-      display_name: [''],
+      display_name: [null],
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(5)]],
     });
@@ -37,7 +43,15 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       this.isSubmitted = false;
       const formValues: User = this.signupForm.value;
-      console.log(formValues);
+
+      formValues['dob'] = "2008-11-1"; // For now giving default value
+
+      this.authService.signup(formValues).subscribe({
+        next: (user: User) => {
+          this.signupForm.reset();
+          this.router.navigate(['auth', 'login']);
+        },
+      });
     }
   }
 
