@@ -38,10 +38,11 @@ export class AuthService {
     if (!token) return;
 
     const decodedToken = this.decodeToken(token);
+    
     const expirationDate = new Date(decodedToken.exp * 1000);
 
     if (expirationDate > new Date()) {
-      this.user.next({ email: decodedToken.email } as User);
+      this.user.next({ email: decodedToken.sub } as User);
       this.autoLogout(decodedToken.exp * 1000 - Date.now());
     } else {
       this.logout();
@@ -67,7 +68,7 @@ export class AuthService {
 
     localStorage.setItem(this.TOKEN_KEY, token);
 
-    this.user.next({ email: decodedToken.email } as User);
+    this.user.next({ email: decodedToken.sub } as User);
 
     this.autoLogout(decodedToken.exp * 1000 - Date.now());
   }
