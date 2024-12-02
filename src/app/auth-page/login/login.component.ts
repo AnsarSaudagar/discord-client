@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { LoginCredentials } from '../../models/login.model';
+import { LoginCredentials, LoginResponse } from '../../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -41,9 +41,13 @@ export class LoginComponent {
 
   onClickLogin() {
     this.isSubmitted = true;
-    if(this.loginForm.valid){
-      const formValues : LoginCredentials = this.loginForm.value;
-      console.log(formValues); 
+    if (this.loginForm.valid) {
+      const formValues: LoginCredentials = this.loginForm.value;
+      this.authService.login(formValues).subscribe({
+        next: (login_res: LoginResponse) => {
+          console.log(login_res);
+        },
+      });
     }
   }
 
