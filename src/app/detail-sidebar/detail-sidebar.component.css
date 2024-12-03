@@ -1,0 +1,7 @@
+.friend-tab:hover p{
+    color: white;
+}
+
+.direct-head:hover > *{
+    color: white;
+}
