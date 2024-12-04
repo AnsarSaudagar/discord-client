@@ -1,5 +1,5 @@
 <div class="h-screen bg-[#303338] ">
-    <div class="text-[#939BA4] border border-transparent border-b-[#1F2023] h-[50px] max-h-[60px]">
+  <div class="text-[#939BA4] border border-transparent border-b-[#1F2023] h-[50px] max-h-[60px]">
         <ul class="flex items-center h-full px-3 gap-5">
             <li class="friend-tab flex items-center text-white rounded">
                 <img class="" src="../../assets/icons/friends.svg" alt="">
@@ -22,7 +22,7 @@
                 Add Friend
             </li>
         </ul>
-    </div>
+    </div>  
     <div class="py-5 px-8">
         <p class="text-[#F2F3F5] font-medium">ADD FRIEND</p>
         <p class="text-xs text-[#A4A8B0] my-3">You can add friends with their Discord usernames.</p>
@@ -30,12 +30,17 @@
             <input
               type="text"
               placeholder="You can add friends with their Discord usernames."
-              class="bg-transparent flex-grow text-gray-400 placeholder-gray-400 focus:outline-[0] border-none focus-within:ring-0"
+              class="bg-transparent flex-grow  placeholder-gray-400 focus:outline-[0] border-none focus-within:ring-0 text-white"
               maxlength="50"
               (focus)="focusInput = true"
               (blur)="focusInput = false"
+              [(ngModel)]="friendInput"
             />
-            <button class="bg-[#5765F2] text-sm transition text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+            <button 
+            (click)="onClickFriendRequest()"
+            [disabled]="friendInput.length == 0" 
+            [ngClass]="{'opacity-25 cursor-not-allowed': friendInput.length == 0}" 
+            class="bg-[#5765F2] text-sm transition text-white px-4 py-2 rounded-md">
               Send Friend Request
             </button>
           </div>
