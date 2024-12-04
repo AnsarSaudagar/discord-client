@@ -26,7 +26,7 @@
     <div class="py-5 px-8">
         <p class="text-[#F2F3F5] font-medium">ADD FRIEND</p>
         <p class="text-xs text-[#A4A8B0] my-3">You can add friends with their Discord usernames.</p>
-        <div [ngClass]="{'border border-[#04A9FB]' : focusInput}" class="flex items-center bg-[#1E1F22] text-gray-400 px-4 py-2 rounded-md ">
+        <div [ngClass]="{'border border-[#04A9FB]' : focusInput, 'border border-[#21A559]' : successRequest, 'border border-[#F23F43]' : errorRequest}" class="flex items-center bg-[#1E1F22] text-gray-400 px-4 py-2 rounded-md ">
             <input
               type="text"
               placeholder="You can add friends with their Discord usernames."
@@ -35,6 +35,7 @@
               (focus)="focusInput = true"
               (blur)="focusInput = false"
               [(ngModel)]="friendInput"
+              (input)="onChangeFriendInput()"
             />
             <button 
             (click)="onClickFriendRequest()"
@@ -44,6 +45,9 @@
               Send Friend Request
             </button>
           </div>
+          @if (showMessage.length > 0) {
+              <p [ngClass]="{'text-[#21A559]' : successRequest, 'text-[#FA767A]' : errorRequest}" class="text-sm mt-2">{{showMessage}}</p>
+          }
           
     </div>
 </div>
