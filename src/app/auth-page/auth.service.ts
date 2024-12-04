@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { LoginCredentials, LoginResponse } from '../models/login.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -29,6 +29,10 @@ export class AuthService {
     return this.http.post<LoginResponse>(this.LOGIN_URL, credentials).pipe(
       tap((response: LoginResponse) => {
         this.handleAuthentication(response.token);
+      }),
+
+      catchError(err => {
+        throw new Error(err);
       })
     );
   }
@@ -65,7 +69,7 @@ export class AuthService {
   private handleAuthentication(token: string) {
     const decodedToken = this.decodeToken(token);
     const expirationTime = new Date(decodedToken.exp * 1000);
-
+    
     localStorage.setItem(this.TOKEN_KEY, token);
 
     this.user.next({ email: decodedToken.sub } as User);
@@ -75,6 +79,7 @@ export class AuthService {
 
   private decodeToken(token: string): any {
     const payload = token.split('.')[1];
+    
     return JSON.parse(atob(payload));
   }
 
