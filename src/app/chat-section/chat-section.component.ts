@@ -21,13 +21,6 @@ export class ChatSectionComponent {
   errorRequest : boolean = false;
   showMessage : string = "";
 
-  // success  #21A559
-  // Success! Your friend request to ansar.dev_56399  was sent.
-
-  // error #F23F43
-  // Hm, that didn’t work. Double-check that the username is correct.
-
-  // error text #FA767A
   constructor(private friendService: FriendService) {}
 
   onClickFriendRequest() {

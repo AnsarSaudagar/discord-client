@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { FriendService } from '../services/friend.service';
+
+@Component({
+  selector: 'app-friend-requests',
+  standalone: true,
+  imports: [],
+  templateUrl: './friend-requests.component.html',
+  styleUrl: './friend-requests.component.css',
+  host: {
+    class: 'flex-[1]',
+  },
+})
+export class FriendRequestsComponent implements OnInit {
+  loggedId !: number;
+  requestArr : any= [];
+  
+  constructor(private friendService: FriendService) {
+    const id = localStorage.getItem("id");
+    if(id){
+      this.loggedId = +id;
+    }
+    
+  }
+
+  ngOnInit(): void {
+    this.friendService.getPendingRequests().subscribe();
+
+    this.friendService.pendingRequestSubject.subscribe({
+      next: (req) => {
+        this.requestArr = req;
+        console.log(req);
+      },
+    });
+  }
+}

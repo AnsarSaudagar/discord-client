@@ -1,0 +1,61 @@
+<div class="h-screen bg-[#303338] ">
+    <div class="text-[#939BA4] border border-transparent border-b-[#1F2023] h-[50px] max-h-[60px]">
+        <ul class="flex items-center h-full px-3 gap-5">
+            <li class="friend-tab flex items-center text-white rounded">
+                <img class="" src="../../assets/icons/friends.svg" alt="">
+                <p class="text-[#939BA4] text-[15px] pl-3 font-bold">Friends</p>
+            </li>
+            <li class="bg-[#3E4147] w-[1px] h-[50%]"></li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                Online
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                All
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                Pending
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                Blocked
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
+                Add Friend
+            </li>
+        </ul>
+    </div>
+    <div class="py-5 px-8">
+        <div class="">
+            <div class="flex items-center bg-[#1E1F22] text-gray-400 rounded-md h-[35px]">
+                <input type="text" placeholder="Search"
+                    class="bg-transparent flex-grow  placeholder-gray-400 focus:outline-[0] border-none focus-within:ring-0 text-white"
+                    maxlength="50" />
+            </div>
+        </div>
+        <div class="mt-8">
+            <p class="text-[#B5BAC0] text-xs font-semibold">PENDING - {{requestArr.length}}</p>
+        </div>
+        <div class="mt-5">
+            @for (request of requestArr; track $index) {
+
+                <div
+                    class=" px-4 h-14 cursor-pointer hover:bg-[#404147] hover:rounded-lg border border-transparent border-t-[#404147] flex items-center">
+                    <div class="bg-[#FAA619] h-8 w-8 rounded-full flex items-center justify-center">
+                        <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
+                    </div>
+                    <div class="text-white ml-4">
+                        <p class="text-sm font-semibold">{{request.username}}</p>
+                        <p class="text-[11px] text-[#B5BAC0]">{{request.senderId === loggedId ? "Outgoing" : "Incoming"}} Friend Request</p>
+                    </div>
+                    <div class="flex-[1]"></div>
+                    <div class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31]">
+                        <svg class="w-5 h-5" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                            <path stroke="#B5BAC0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18 17.94 6M18 18 6.06 6" />
+                        </svg>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

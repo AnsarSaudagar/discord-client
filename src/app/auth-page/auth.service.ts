@@ -55,6 +55,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem('id');
     this.user.next(null);
     clearTimeout(this.tokenExpirationTimer);
     this.router.navigateByUrl('/auth/login');
@@ -71,6 +72,7 @@ export class AuthService {
     const expirationTime = new Date(decodedToken.exp * 1000);
     
     localStorage.setItem(this.TOKEN_KEY, token);
+    localStorage.setItem('id', decodedToken.id);
 
     this.user.next({ email: decodedToken.sub } as User);
 
