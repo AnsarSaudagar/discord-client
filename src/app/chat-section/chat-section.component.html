@@ -1,3 +1,44 @@
 <div class="h-screen bg-[#303338] ">
-
+    <div class="text-[#939BA4] border border-transparent border-b-[#1F2023] h-[50px] max-h-[60px]">
+        <ul class="flex items-center h-full px-3 gap-5">
+            <li class="friend-tab flex items-center text-white rounded">
+                <img class="" src="../../assets/icons/friends.svg" alt="">
+                <p class="text-[#939BA4] text-[15px] pl-3 font-bold">Friends</p>
+            </li>
+            <li class="bg-[#3E4147] w-[1px] h-[50%]"></li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                Online
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                All
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                Pending
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+                Blocked
+            </li>
+            <li class="text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
+                Add Friend
+            </li>
+        </ul>
+    </div>
+    <div class="py-5 px-8">
+        <p class="text-[#F2F3F5] font-medium">ADD FRIEND</p>
+        <p class="text-xs text-[#A4A8B0] my-3">You can add friends with their Discord usernames.</p>
+        <div [ngClass]="{'border border-[#04A9FB]' : focusInput}" class="flex items-center bg-[#1E1F22] text-gray-400 px-4 py-2 rounded-md ">
+            <input
+              type="text"
+              placeholder="You can add friends with their Discord usernames."
+              class="bg-transparent flex-grow text-gray-400 placeholder-gray-400 focus:outline-[0] border-none focus-within:ring-0"
+              maxlength="50"
+              (focus)="focusInput = true"
+              (blur)="focusInput = false"
+            />
+            <button class="bg-[#5765F2] text-sm transition text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+              Send Friend Request
+            </button>
+          </div>
+          
+    </div>
 </div>

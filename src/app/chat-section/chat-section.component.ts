@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chat-section',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './chat-section.component.html',
   styleUrl: './chat-section.component.css',
   host:{
@@ -11,5 +12,5 @@ import { Component } from '@angular/core';
   }
 })
 export class ChatSectionComponent {
-
+  focusInput :boolean = false;
 }
