@@ -18,6 +18,7 @@ export class FriendRequestsComponent implements OnInit {
   requestArr : any= [];
   
   requestType !: number;
+  requestTypeStr !: string;
   
   constructor(private friendService: FriendService, private friendSharingService: FriendSharingService) {
     const id = localStorage.getItem("id");
@@ -35,6 +36,12 @@ export class FriendRequestsComponent implements OnInit {
       next: (type)=>{
         this.requestType = type;
         this.updateRequestData();
+        Object.keys(this.friendSharingService.types).find(key => {
+            if(type === +this.friendSharingService.types[key]){
+              this.requestTypeStr =  key ;
+              return;
+            }
+        });
       }
     })
   }

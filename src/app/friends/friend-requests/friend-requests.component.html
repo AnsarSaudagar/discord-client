@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="mt-8">
-            <p class="text-[#B5BAC0] text-xs font-semibold">PENDING - {{requestArr.length}}</p>
+            <p class="text-[#B5BAC0] text-xs font-semibold">{{requestTypeStr}} - {{requestArr.length}}</p>
         </div>
         <div class="mt-5">
             @for (request of requestArr; track $index) {
@@ -20,12 +20,15 @@
                 </div>
                 <div class="text-white ml-4">
                     <p class="text-sm font-semibold">{{request.username}}</p>
+                    @if (request.status === 0) {
                     <p class="text-[11px] text-[#B5BAC0]">{{request.senderId === loggedId ? "Outgoing" : "Incoming"}}
                         Friend Request</p>
+                    }
                 </div>
                 <div class="flex-[1]"></div>
                 <div class="flex gap-2">
-                    @if (request.receiverId === loggedId) {
+
+                    @if (request.receiverId === loggedId && request.status === 0) {
                     <div (click)="onClickAccept(request.requestId)"
                         class="h-8 w-8 rounded-full flex items-center justify-center hover:bg-[#1E1F22] bg-[#2A2D31]">
                         <svg class="check-svg w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
