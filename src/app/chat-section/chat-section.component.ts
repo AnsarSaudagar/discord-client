@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FriendService } from '../services/friend.service';
-import { FriendRequestResponse } from '../models/friend_request_response.model';
+import { FriendRequestSectionComponent } from './friend-request-section/friend-request-section.component';
 
 @Component({
   selector: 'app-chat-section',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FriendRequestSectionComponent],
   templateUrl: './chat-section.component.html',
   styleUrl: './chat-section.component.css',
   host: {
@@ -15,30 +14,5 @@ import { FriendRequestResponse } from '../models/friend_request_response.model';
   },
 })
 export class ChatSectionComponent {
-  focusInput: boolean = false;
-  friendInput: string = '';
-  successRequest : boolean= false;
-  errorRequest : boolean = false;
-  showMessage : string = "";
-
-  constructor(private friendService: FriendService) {}
-
-  onClickFriendRequest() {
-    this.friendService.sendFriendRequest(this.friendInput).subscribe({
-      next: (res: FriendRequestResponse) => {
-        this.successRequest = true;
-        this.showMessage = `Success! Your friend request to ${this.friendInput}  was sent`;
-      },
-      error: (err) => {
-          this.errorRequest = true;
-          this.showMessage = `Hm, that didn’t work. Double-check that the username is correct.`;
-      }
-    });
-  }
-
-  onChangeFriendInput(){
-    this.showMessage = "";
-    this.successRequest = false;
-    this.errorRequest = false;
-  }
+  
 }
