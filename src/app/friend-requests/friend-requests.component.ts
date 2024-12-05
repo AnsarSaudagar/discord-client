@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendService } from '../services/friend.service';
+import { FriendRequestResponse } from '../models/friend_request_response.model';
 
 @Component({
   selector: 'app-friend-requests',
@@ -28,8 +29,9 @@ export class FriendRequestsComponent implements OnInit {
 
     this.friendService.pendingRequestSubject.subscribe({
       next: (req) => {
-        this.requestArr = req;
-        console.log(req);
+        this.requestArr = req.filter((d : FriendRequestResponse) =>{
+          return +d.status === 0;
+        });
       },
     });
   }

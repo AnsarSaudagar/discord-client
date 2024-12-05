@@ -1,0 +1,6 @@
+.check-svg:hover path{
+    stroke: rgb(32, 148, 32);
+}
+.cross-svg:hover path{
+    stroke: rgb(186, 49, 49);
+}
