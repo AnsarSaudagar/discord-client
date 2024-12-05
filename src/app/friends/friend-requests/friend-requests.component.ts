@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendService } from '../../services/friend.service';
 import { FriendRequestResponse } from '../../models/friend_request_response.model';
+import { FriendSharingService } from '../../services/friend-sharing.service';
 
 @Component({
   selector: 'app-friend-requests',
@@ -16,7 +17,9 @@ export class FriendRequestsComponent implements OnInit {
   loggedId !: number;
   requestArr : any= [];
   
-  constructor(private friendService: FriendService) {
+  requestType !: number;
+  
+  constructor(private friendService: FriendService, private friendSharingService: FriendSharingService) {
     const id = localStorage.getItem("id");
     if(id){
       this.loggedId = +id;
@@ -26,12 +29,21 @@ export class FriendRequestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.friendService.getPendingRequests().subscribe();
+    this.updateRequestData();
 
+    this.friendSharingService.friendTypeSubject.subscribe({
+      next: (type)=>{
+        this.requestType = type;
+        this.updateRequestData();
+      }
+    })
+  }
+
+  private updateRequestData(){
     this.friendService.pendingRequestSubject.subscribe({
-      next: (req) => {
-        
+      next: (req) => { 
         this.requestArr = req.filter((d : FriendRequestResponse) =>{
-          return +d.status === 0;
+          return +d.status === this.requestType;
         });
       },
     });

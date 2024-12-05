@@ -6,19 +6,21 @@
                 <p class="text-[#939BA4] text-[15px] pl-3 font-bold">Friends</p>
             </li>
             <li class="bg-[#3E4147] w-[1px] h-[50%]"></li>
-            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li (click)="onClickFriendType('ALL')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 Online
             </li>
-            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li (click)="onClickFriendType('ALL')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 All
             </li>
-            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li (click)="onClickFriendType('PENDING')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 Pending
             </li>
-            <li class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li (click)="onClickFriendType('BLOCKED')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 Blocked
             </li>
-            <li class="text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
+            <li
+            (click)="onClickAddFriend()"
+            class="text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
                 Add Friend
             </li>
         </ul>
