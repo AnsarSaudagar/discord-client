@@ -5,13 +5,13 @@ import { FriendService } from '../../services/friend.service';
 import { FriendRequestResponse } from '../../models/friend_request_response.model';
 
 @Component({
-  selector: 'app-friend-request-section',
+  selector: 'app-friend-search',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './friend-request-section.component.html',
-  styleUrl: './friend-request-section.component.css'
+  templateUrl: './friend-search.component.html',
+  styleUrl: './friend-search.component.css'
 })
-export class FriendRequestSectionComponent {
+export class FriendSearchComponent {
   focusInput: boolean = false;
   friendInput: string = '';
   successRequest : boolean= false;
