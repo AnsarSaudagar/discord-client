@@ -29,10 +29,26 @@ export class FriendRequestsComponent implements OnInit {
 
     this.friendService.pendingRequestSubject.subscribe({
       next: (req) => {
+        
         this.requestArr = req.filter((d : FriendRequestResponse) =>{
           return +d.status === 0;
         });
       },
     });
+  }
+
+  onClickAccept(id : number){
+    this.friendService.acceptFriendRequest(id).subscribe({
+      next: () => {
+        this.friendService.getPendingRequests().subscribe();
+      }
+    })
+  }
+  onClickReject(id : number){
+    this.friendService.deleteFriendRequest(id).subscribe({
+      next: () => {
+        this.friendService.getPendingRequests().subscribe();
+      }
+    })
   }
 }

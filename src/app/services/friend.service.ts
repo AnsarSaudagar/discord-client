@@ -11,6 +11,8 @@ export class FriendService {
   private BASE_URL = environment.API_URL + 'friends/';
   private REQUEST_URL = this.BASE_URL + 'request?username=';
   private PENDING_REQUEST_URL = this.BASE_URL + 'request';
+  private ACCEPT_REQUEST_URL = this.BASE_URL + "accept-friend?id=";
+  private DELETE_REQUEST_URL = this.BASE_URL + "delete-friend?id=";
   constructor(private http: HttpClient) {}
 
   public pendingRequestSubject = new BehaviorSubject([]);
@@ -30,4 +32,14 @@ export class FriendService {
       })
     );
   }
+
+  acceptFriendRequest(id : number){
+    return this.http.patch(this.ACCEPT_REQUEST_URL + id, {});
+  }
+
+  deleteFriendRequest(id : number){
+    return this.http.delete(this.DELETE_REQUEST_URL + id, {});
+  }
+
+
 }
