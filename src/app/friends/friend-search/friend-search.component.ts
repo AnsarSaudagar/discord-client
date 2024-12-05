@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FriendService } from '../../services/friend.service';
 import { FriendRequestResponse } from '../../models/friend_request_response.model';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-friend-search',
@@ -18,7 +19,11 @@ export class FriendSearchComponent {
   errorRequest : boolean = false;
   showMessage : string = "";
 
-  constructor(private friendService: FriendService) {}
+  constructor(private friendService: FriendService, private socketService: SocketService) {}
+
+  ngOnInit(){
+   
+  }
 
   onClickFriendRequest() {
     this.friendService.sendFriendRequest(this.friendInput).subscribe({
