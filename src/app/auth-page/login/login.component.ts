@@ -45,8 +45,7 @@ export class LoginComponent {
       const formValues: LoginCredentials = this.loginForm.value;
       this.authService.login(formValues).subscribe({
         next: (login_res: LoginResponse) => {
-          // console.log(login_res);
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         },
       });
     }
