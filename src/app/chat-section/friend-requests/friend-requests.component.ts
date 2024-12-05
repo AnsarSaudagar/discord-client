@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FriendService } from '../services/friend.service';
-import { FriendRequestResponse } from '../models/friend_request_response.model';
+import { FriendService } from '../../services/friend.service';
+import { FriendRequestResponse } from '../../models/friend_request_response.model';
 
 @Component({
   selector: 'app-friend-requests',

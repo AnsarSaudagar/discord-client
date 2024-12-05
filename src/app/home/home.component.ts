@@ -3,7 +3,7 @@ import { AuthService } from '../auth-page/auth.service';
 import { MainSidebarComponent } from '../main-sidebar/main-sidebar.component';
 import { DetailSidebarComponent } from '../detail-sidebar/detail-sidebar.component';
 import { ChatSectionComponent } from '../chat-section/chat-section.component';
-import { FriendRequestsComponent } from '../friend-requests/friend-requests.component';
+import { FriendRequestsComponent } from '../chat-section/friend-requests/friend-requests.component';
 
 @Component({
   selector: 'app-home',
