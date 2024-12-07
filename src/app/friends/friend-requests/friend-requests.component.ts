@@ -60,8 +60,6 @@ export class FriendRequestsComponent implements OnInit {
   private updateRequestData() {
     this.friendService.pendingRequestSubject.subscribe({
       next: (req) => {
-        console.log(req);
-        
         this.requestArr = req.filter((d: FriendRequestResponse) => {
           return +d.status === this.requestType;
         });
