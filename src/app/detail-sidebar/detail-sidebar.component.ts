@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FriendService } from '../services/friend.service';
 import { DirectMessageService } from '../services/direct-message.service';
 import { Chats } from '../models/chats.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-sidebar',
@@ -14,7 +15,7 @@ export class DetailSidebarComponent implements OnInit {
 
   chats : Chats[] = [];
 
-  constructor(private dmService: DirectMessageService) {}
+  constructor(private dmService: DirectMessageService, private router: Router) {}
 
   ngOnInit(): void {
     this.dmService.getInitiatedChats().subscribe();
@@ -23,5 +24,13 @@ export class DetailSidebarComponent implements OnInit {
         this.chats = chats;
       }
     })
+  }
+
+  onClickFriends(){
+    this.router.navigate(['home', 'friends']);
+  }
+
+  onClickChat(){
+    this.router.navigate(['home', 'chat']);
   }
 }
