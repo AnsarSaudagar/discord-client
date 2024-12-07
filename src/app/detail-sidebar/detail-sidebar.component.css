@@ -6,6 +6,10 @@
     color: white;
 }
 
-#cross-btn:hover svg path{
+.cross-btn:hover svg path{
     stroke: white;
+}
+
+.chat-user:hover  .cross-btn{
+    display: flex;
 }
