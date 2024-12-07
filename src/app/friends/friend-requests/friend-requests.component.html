@@ -28,7 +28,7 @@
                 <div class="flex gap-2">
 
                     @if (request.receiverId === loggedId && request.status === 0) {
-                    <div (click)="onClickAccept(request.requestId)"
+                    <div (click)="onClickAccept(request.requestId, request.senderId === loggedId ? request.receiverId : request.senderId)"
                         class="h-8 w-8 rounded-full flex items-center justify-center hover:bg-[#1E1F22] bg-[#2A2D31]">
                         <svg class="check-svg w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
@@ -39,15 +39,15 @@
                     </div>
                     }
                     @if(request.status === 1){
-                        <div (click)="onClickChat(request.senderId === loggedId ? request.receiverId : request.senderId)"
-                            class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31] hover:bg-[#1E1F22]">
-                            <svg class="icon_e01b91" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"
-                                width="20" height="20" fill="none" viewBox="0 0 24 24">
-                                <path fill="#B5BAC0"
-                                    d="M12 22a10 10 0 1 0-8.45-4.64c.13.19.11.44-.04.61l-2.06 2.37A1 1 0 0 0 2.2 22H12Z"
-                                    class=""></path>
-                            </svg>
-                        </div>
+                    <div (click)="onClickChat(request.senderId === loggedId ? request.receiverId : request.senderId)"
+                        class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31] hover:bg-[#1E1F22]">
+                        <svg class="icon_e01b91" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20" fill="none" viewBox="0 0 24 24">
+                            <path fill="#B5BAC0"
+                                d="M12 22a10 10 0 1 0-8.45-4.64c.13.19.11.44-.04.61l-2.06 2.37A1 1 0 0 0 2.2 22H12Z"
+                                class=""></path>
+                        </svg>
+                    </div>
                     }
                     <div (click)="onClickReject(request.requestId)"
                         class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31] hover:bg-[#1E1F22]">

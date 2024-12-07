@@ -15,4 +15,8 @@ export class DirectMessageService {
   sendChat(request_body: DmSentRequest) {
     return this.http.post(this.SENT_URL, request_body);
   }
+
+  getInitiatedChats(){
+    
+  }
 }
