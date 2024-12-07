@@ -9,7 +9,7 @@ import { DirectMessageService } from '../../services/direct-message.service';
 @Component({
   selector: 'app-friend-requests',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './friend-requests.component.html',
   styleUrl: './friend-requests.component.css',
   host: {
@@ -80,7 +80,11 @@ export class FriendRequestsComponent implements OnInit {
             receiver_id: receiver_id,
             messageText: messageText,
           })
-          .subscribe();
+          .subscribe({
+            next: (data) => {
+              this.dmService.getInitiatedChats().subscribe();
+            }
+          });
       },
     });
   }
