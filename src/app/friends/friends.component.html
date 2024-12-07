@@ -1,30 +1,29 @@
-<div class="h-screen bg-[#303338] ">
-    <div class="text-[#939BA4] border border-transparent border-b-[#1F2023] h-[50px] max-h-[60px]">
-        <ul class="flex items-center h-full px-3 gap-5">
-            <li class="friend-tab flex items-center text-white rounded">
-                <img class="" src="../../assets/icons/friends.svg" alt="">
-                <p class="text-[#939BA4] text-[15px] pl-3 font-bold">Friends</p>
-            </li>
-            <li class="bg-[#3E4147] w-[1px] h-[50%]"></li>
-            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === ''}" (click)="onClickFriendType('')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
-                Online
-            </li>
-            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'ALL'}" (click)="onClickFriendType('ALL')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
-                All
-            </li>
-            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'PENDING'}" (click)="onClickFriendType('PENDING')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
-                Pending
-            </li>
-            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'BLOCKED'}" (click)="onClickFriendType('BLOCKED')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
-                Blocked
-            </li>
-            <li
-            (click)="onClickAddFriend()"
-            class="type-tab text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
-                Add Friend
-            </li>
-        </ul>
-    </div>
-    <router-outlet></router-outlet>
-    
-</div>
+<app-layout-wrapper>
+    <ul navbar class="flex items-center h-full px-3 gap-5">
+        <li class="friend-tab flex items-center text-white rounded">
+            <img class="" src="../../assets/icons/friends.svg" alt="">
+            <p class="text-[#939BA4] text-[15px] pl-3 font-bold">Friends</p>
+        </li>
+        <li class="bg-[#3E4147] w-[1px] h-[50%]"></li>
+        <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === ''}" (click)="onClickFriendType('')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            Online
+        </li>
+        <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'ALL'}" (click)="onClickFriendType('ALL')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            All
+        </li>
+        <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'PENDING'}" (click)="onClickFriendType('PENDING')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            Pending
+        </li>
+        <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'BLOCKED'}" (click)="onClickFriendType('BLOCKED')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            Blocked
+        </li>
+        <li
+        (click)="onClickAddFriend()"
+        class="type-tab text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
+            Add Friend
+        </li>
+    </ul>
+    <ng-container body>
+        <router-outlet></router-outlet>
+    </ng-container>
+</app-layout-wrapper>

@@ -5,11 +5,12 @@ import { FriendSearchComponent } from './friend-search/friend-search.component';
 import { FriendRequestsComponent } from './friend-requests/friend-requests.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { FriendSharingService } from '../services/friend-sharing.service';
+import { LayoutWrapperComponent } from '../wrappers/layout-wrapper/layout-wrapper.component';
 
 @Component({
   selector: 'app-friends',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet, LayoutWrapperComponent],
   templateUrl: './friends.component.html',
   styleUrl: './friends.component.css',
   host: {
