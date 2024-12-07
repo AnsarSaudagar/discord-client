@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './layout-wrapper.component.html',
-  styleUrl: './layout-wrapper.component.css'
+  styleUrl: './layout-wrapper.component.css',
 })
 export class LayoutWrapperComponent {
 
