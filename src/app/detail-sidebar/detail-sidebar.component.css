@@ -5,3 +5,7 @@
 .direct-head:hover > *{
     color: white;
 }
+
+#cross-btn:hover svg path{
+    stroke: white;
+}
