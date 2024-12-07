@@ -17,16 +17,16 @@ import { FriendSharingService } from '../services/friend-sharing.service';
   },
 })
 export class FriendsComponent implements OnInit {
-  activeTab : string | null = "PENDING";
+  activeTab: string | null = 'PENDING';
   constructor(
     private router: Router,
     private friendSharingService: FriendSharingService
   ) {}
 
   ngOnInit(): void {
-      if(this.router.url === "/home/friends/add"){
-        this.activeTab = null;
-      }
+    if (this.router.url === '/home/friends/add') {
+      this.activeTab = null;
+    }
   }
 
   onClickAddFriend() {
@@ -39,7 +39,7 @@ export class FriendsComponent implements OnInit {
     this.friendSharingService.friendTypeSubject.next(
       +this.friendSharingService.types[type]
     );
-    
+
     this.router.navigate(['home', 'friends']);
   }
 }

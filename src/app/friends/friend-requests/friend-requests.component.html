@@ -12,7 +12,6 @@
         </div>
         <div class="mt-5">
             @for (request of requestArr; track $index) {
-
             <div
                 class=" px-4 h-14 cursor-pointer hover:bg-[#404147] hover:rounded-lg border border-transparent border-t-[#404147] flex items-center">
                 <div class="bg-[#FAA619] h-8 w-8 rounded-full flex items-center justify-center">
@@ -39,6 +38,17 @@
 
                     </div>
                     }
+                    @if(request.status === 1){
+                        <div (click)="onClickChat()"
+                            class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31] hover:bg-[#1E1F22]">
+                            <svg class="icon_e01b91" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"
+                                width="20" height="20" fill="none" viewBox="0 0 24 24">
+                                <path fill="#B5BAC0"
+                                    d="M12 22a10 10 0 1 0-8.45-4.64c.13.19.11.44-.04.61l-2.06 2.37A1 1 0 0 0 2.2 22H12Z"
+                                    class=""></path>
+                            </svg>
+                        </div>
+                    }
                     <div (click)="onClickReject(request.requestId)"
                         class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31] hover:bg-[#1E1F22]">
                         <svg class="cross-svg -5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20"
@@ -47,6 +57,7 @@
                                 d="M6 18 17.94 6M18 18 6.06 6" />
                         </svg>
                     </div>
+
                 </div>
             </div>
             }

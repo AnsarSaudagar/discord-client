@@ -81,4 +81,7 @@ export class FriendRequestsComponent implements OnInit {
       },
     });
   }
+  onClickChat(){
+
+  }
 }
