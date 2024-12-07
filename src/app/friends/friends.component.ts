@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FriendSearchComponent } from './friend-search/friend-search.component';
 import { FriendRequestsComponent } from './friend-requests/friend-requests.component';
@@ -16,12 +16,18 @@ import { FriendSharingService } from '../services/friend-sharing.service';
     class: 'flex-[1]',
   },
 })
-export class FriendsComponent {
+export class FriendsComponent implements OnInit {
   activeTab : string | null = "PENDING";
   constructor(
     private router: Router,
     private friendSharingService: FriendSharingService
   ) {}
+
+  ngOnInit(): void {
+      if(this.router.url === "/home/friends/add"){
+        this.activeTab = null;
+      }
+  }
 
   onClickAddFriend() {
     this.activeTab = null;
