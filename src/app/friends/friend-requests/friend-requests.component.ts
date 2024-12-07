@@ -3,11 +3,13 @@ import { FriendService } from '../../services/friend.service';
 import { FriendRequestResponse } from '../../models/friend_request_response.model';
 import { FriendSharingService } from '../../services/friend-sharing.service';
 import { SocketService } from '../../services/socket.service';
+import { JsonPipe } from '@angular/common';
+import { DirectMessageService } from '../../services/direct-message.service';
 
 @Component({
   selector: 'app-friend-requests',
   standalone: true,
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './friend-requests.component.html',
   styleUrl: './friend-requests.component.css',
   host: {
@@ -24,7 +26,8 @@ export class FriendRequestsComponent implements OnInit {
   constructor(
     private friendService: FriendService,
     private friendSharingService: FriendSharingService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private dmService: DirectMessageService
   ) {
     const id = localStorage.getItem('id');
     if (id) {
@@ -81,7 +84,11 @@ export class FriendRequestsComponent implements OnInit {
       },
     });
   }
-  onClickChat(){
-
+  onClickChat(receiver_id : number){
+    const messageText : string | null = null;
+    this.dmService.sendChat({
+      receiver_id: receiver_id,
+      messageText: messageText
+    }).subscribe()
   }
 }

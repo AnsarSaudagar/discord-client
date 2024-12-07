@@ -39,7 +39,7 @@
                     </div>
                     }
                     @if(request.status === 1){
-                        <div (click)="onClickChat()"
+                        <div (click)="onClickChat(request.senderId === loggedId ? request.receiverId : request.senderId)"
                             class="h-8 w-8 rounded-full flex items-center justify-center bg-[#2A2D31] hover:bg-[#1E1F22]">
                             <svg class="icon_e01b91" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"
                                 width="20" height="20" fill="none" viewBox="0 0 24 24">
