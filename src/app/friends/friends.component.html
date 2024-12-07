@@ -6,21 +6,21 @@
                 <p class="text-[#939BA4] text-[15px] pl-3 font-bold">Friends</p>
             </li>
             <li class="bg-[#3E4147] w-[1px] h-[50%]"></li>
-            <li (click)="onClickFriendType('ALL')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === ''}" (click)="onClickFriendType('')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 Online
             </li>
-            <li (click)="onClickFriendType('ALL')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'ALL'}" (click)="onClickFriendType('ALL')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 All
             </li>
-            <li (click)="onClickFriendType('PENDING')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'PENDING'}" (click)="onClickFriendType('PENDING')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 Pending
             </li>
-            <li (click)="onClickFriendType('BLOCKED')" class="text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
+            <li [ngClass]="{'bg-[#3F4248] text-white' : activeTab === 'BLOCKED'}" (click)="onClickFriendType('BLOCKED')" class="type-tab text-sm font-medium py-[2px] px-2 hover:bg-[#3F4248] hover:text-white cursor-pointer rounded">
                 Blocked
             </li>
             <li
             (click)="onClickAddFriend()"
-            class="text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
+            class="type-tab text-sm font-medium py-[2px] px-2 bg-[#248045] text-white cursor-pointer rounded">
                 Add Friend
             </li>
         </ul>

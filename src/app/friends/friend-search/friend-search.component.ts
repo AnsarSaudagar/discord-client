@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FriendService } from '../../services/friend.service';
 import { FriendRequestResponse } from '../../models/friend_request_response.model';
@@ -20,10 +20,6 @@ export class FriendSearchComponent {
   showMessage : string = "";
 
   constructor(private friendService: FriendService, private socketService: SocketService) {}
-
-  ngOnInit(){
-   
-  }
 
   onClickFriendRequest() {
     this.friendService.sendFriendRequest(this.friendInput).subscribe({

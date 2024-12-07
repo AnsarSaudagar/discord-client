@@ -17,16 +17,19 @@ import { FriendSharingService } from '../services/friend-sharing.service';
   },
 })
 export class FriendsComponent {
+  activeTab : string | null = "PENDING";
   constructor(
     private router: Router,
     private friendSharingService: FriendSharingService
   ) {}
 
   onClickAddFriend() {
+    this.activeTab = null;
     this.router.navigate(['home', 'friends', 'add']);
   }
 
   onClickFriendType(type: string) {
+    this.activeTab = type;
     this.friendSharingService.friendTypeSubject.next(
       +this.friendSharingService.types[type]
     );
