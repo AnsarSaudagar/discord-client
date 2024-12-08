@@ -12,8 +12,7 @@ import { LayoutWrapperComponent } from '../wrappers/layout-wrapper/layout-wrappe
   }
 })
 export class ChatComponent {
-  onCheck(){
-    // console.log("ansar");
+  onEnter(){
     
   }
 }
