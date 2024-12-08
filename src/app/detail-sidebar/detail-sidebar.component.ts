@@ -30,7 +30,7 @@ export class DetailSidebarComponent implements OnInit {
     this.router.navigate(['home', 'friends']);
   }
 
-  onClickChat(){
-    this.router.navigate(['home', 'chat']);
+  onClickChat(other_user_id: number){
+    this.router.navigate(['home', 'chat', other_user_id]);
   }
 }
