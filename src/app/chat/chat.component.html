@@ -29,7 +29,7 @@
                                 <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
                             </div>
                             <div class="text-white ml-4 cursor-pointer">
-                                <p class="text-base">{{message.sender_name}} <span class="text-[11px] font-normal ml-2 text-[#939BA4]">Today at 13:56</span></p>
+                                <p class="text-base">{{message.sender_name}} <span class="text-[11px] font-normal ml-2 text-[#939BA4]">{{message.sent_at | formatDate}}</span></p>
                                 <p class="text-[13px]">{{message.message_text}}</p>
                             </div>
                             <div class="flex-[1]"></div>

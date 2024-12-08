@@ -5,11 +5,12 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { DirectMessages } from '../models/direct_messages.model';
 import { DirectMessageService } from '../services/direct-message.service';
+import { FormatDatePipe } from '../shared/pipes/format-date.pipe';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [LayoutWrapperComponent],
+  imports: [LayoutWrapperComponent, FormatDatePipe],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
   host: {
