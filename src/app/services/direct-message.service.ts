@@ -20,7 +20,7 @@ export class DirectMessageService {
   constructor(private http: HttpClient) {}
 
   sendChat(request_body: DmSentRequest) {
-    return this.http.post(this.SENT_URL, request_body);
+    return this.http.post<DirectMessages>(this.SENT_URL, request_body);
   }
 
   getInitiatedChats() {

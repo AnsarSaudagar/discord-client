@@ -6,11 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 import { DirectMessages } from '../models/direct_messages.model';
 import { DirectMessageService } from '../services/direct-message.service';
 import { FormatDatePipe } from '../shared/pipes/format-date.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [LayoutWrapperComponent, FormatDatePipe],
+  imports: [LayoutWrapperComponent, FormatDatePipe, FormsModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
   host: {
@@ -22,6 +23,7 @@ export class ChatComponent implements OnInit {
   message_id!: number;
   friend_id!: number;
   loggedData!: User | null;
+  message  : string | null = null;
 
   messages!: DirectMessages[] | null;
 
@@ -58,5 +60,20 @@ export class ChatComponent implements OnInit {
 
   getFriendData() {}
 
-  onEnter() {}
+  onEnter() {
+    console.log(this.message);
+    
+    if(this.message && this.message.length > 0){
+      this.directMessageService.sendChat({
+        messageText: this.message,
+        receiver_id: this.friend_id
+      }).subscribe({
+        next: (chat : DirectMessages) => {
+          this.message = null;
+          
+          this.directMessageService.getMessages(this.friend_id).subscribe();
+        }
+      });
+    }
+  }
 }

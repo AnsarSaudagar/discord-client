@@ -41,7 +41,8 @@
         <div class="chat-input h-16 ">
             <input (keyup.enter)="onEnter()" type="text"
                 class="block m-auto bg-[#373A3F] border-transparent focus:border-transparent focus:ring-0 text-white rounded-md w-[98%]"
-                placeholder="Message @ansar">
+                placeholder="Message @ansar"
+                [(ngModel)]="message">
         </div>
     </div>
 
