@@ -7,13 +7,8 @@ import { io } from 'socket.io-client';
 export class SocketService {
   private _socket: any;
 
-
-  constructor() {
-  
-  }
-
   startServer(){
-    this._socket = io('http://localhost:9092', {
+    this._socket = io('http://localhost:3001', {
       query: { userId: localStorage.getItem("id") }, 
     });
   }
