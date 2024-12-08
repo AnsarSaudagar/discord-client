@@ -18,7 +18,7 @@
     </div>
     <div>
         @for (chat of chats; track $index) {
-            <div (click)="onClickChat(chat.other_user_id)" class="chat-user px-2 m-auto h-10 w-[90%] cursor-pointer hover:bg-[#404147] hover:rounded-lg flex items-center">
+            <div (click)="onClickChat(chat.message_id, chat.other_user_id)" class="chat-user px-2 m-auto h-10 w-[90%] cursor-pointer hover:bg-[#404147] hover:rounded-lg flex items-center">
                 <div class="bg-[#FAA619] h-7 w-7 rounded-full flex items-center justify-center">
                     <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
                 </div>

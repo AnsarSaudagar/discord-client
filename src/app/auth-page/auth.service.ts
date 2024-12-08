@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 import { LoginCredentials, LoginResponse } from '../models/login.model';
 import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,11 @@ export class AuthService {
 
   user = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   signup(user: User) {
     return this.http.post<User>(this.SIGNUP_URL, user);
@@ -29,9 +34,10 @@ export class AuthService {
     return this.http.post<LoginResponse>(this.LOGIN_URL, credentials).pipe(
       tap((response: LoginResponse) => {
         this.handleAuthentication(response.token);
+        this.userService.getLoggedUserData().subscribe();
       }),
 
-      catchError(err => {
+      catchError((err) => {
         throw new Error(err);
       })
     );
@@ -41,8 +47,10 @@ export class AuthService {
     const token = this.getToken();
     if (!token) return;
 
+    this.userService.getLoggedUserData().subscribe();
+
     const decodedToken = this.decodeToken(token);
-    
+
     const expirationDate = new Date(decodedToken.exp * 1000);
 
     if (expirationDate > new Date()) {
@@ -70,7 +78,7 @@ export class AuthService {
   private handleAuthentication(token: string) {
     const decodedToken = this.decodeToken(token);
     const expirationTime = new Date(decodedToken.exp * 1000);
-    
+
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem('id', decodedToken.id);
 
@@ -81,11 +89,13 @@ export class AuthService {
 
   private decodeToken(token: string): any {
     const payload = token.split('.')[1];
-    
+
     return JSON.parse(atob(payload));
   }
 
   getToken() {
     return localStorage.getItem(this.TOKEN_KEY);
   }
+
+  private getLoggedUserData() {}
 }

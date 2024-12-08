@@ -12,25 +12,27 @@ import { Router } from '@angular/router';
   styleUrl: './detail-sidebar.component.css',
 })
 export class DetailSidebarComponent implements OnInit {
+  chats: Chats[] = [];
 
-  chats : Chats[] = [];
-
-  constructor(private dmService: DirectMessageService, private router: Router) {}
+  constructor(
+    private dmService: DirectMessageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.dmService.getInitiatedChats().subscribe();
     this.dmService.chatsSubject.subscribe({
-      next: (chats : Chats[]) => {
+      next: (chats: Chats[]) => {
         this.chats = chats;
-      }
-    })
+      },
+    });
   }
 
-  onClickFriends(){
+  onClickFriends() {
     this.router.navigate(['home', 'friends']);
   }
 
-  onClickChat(other_user_id: number){
-    this.router.navigate(['home', 'chat', other_user_id]);
+  onClickChat(message_id: number, other_user_id: number) {
+    this.router.navigate(['home', 'chat', message_id, other_user_id]);
   }
 }
