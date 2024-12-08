@@ -7,6 +7,7 @@ import { DirectMessages } from '../models/direct_messages.model';
 import { DirectMessageService } from '../services/direct-message.service';
 import { FormatDatePipe } from '../shared/pipes/format-date.pipe';
 import { FormsModule } from '@angular/forms';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-chat',
@@ -23,14 +24,15 @@ export class ChatComponent implements OnInit {
   message_id!: number;
   friend_id!: number;
   loggedData!: User | null;
-  message  : string | null = null;
+  message: string | null = null;
 
   messages!: DirectMessages[] | null;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private directMessageService: DirectMessageService
+    private directMessageService: DirectMessageService,
+    private socketService: SocketService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,10 @@ export class ChatComponent implements OnInit {
           },
         });
 
+        this.socketService.socket.on('new_message', () => {
+          this.directMessageService.getMessages(this.friend_id).subscribe();
+        });
+
         this.userService
           .getUserData(+paramsMap.params.other_user_id)
           .subscribe({
@@ -61,19 +67,18 @@ export class ChatComponent implements OnInit {
   getFriendData() {}
 
   onEnter() {
-    console.log(this.message);
-    
-    if(this.message && this.message.length > 0){
-      this.directMessageService.sendChat({
-        messageText: this.message,
-        receiver_id: this.friend_id
-      }).subscribe({
-        next: (chat : DirectMessages) => {
-          this.message = null;
-          
-          this.directMessageService.getMessages(this.friend_id).subscribe();
-        }
-      });
+    if (this.message && this.message.length > 0) {
+      this.directMessageService
+        .sendChat({
+          messageText: this.message,
+          receiver_id: this.friend_id,
+        })
+        .subscribe({
+          next: (chat: DirectMessages) => {
+            this.message = null;
+            this.directMessageService.getMessages(this.friend_id).subscribe();
+          },
+        });
     }
   }
 }
