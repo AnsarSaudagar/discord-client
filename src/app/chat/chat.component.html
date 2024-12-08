@@ -23,37 +23,18 @@
                 <p class="text-[#B5BAC0]">This is the beginning of your direct message history with Ansar</p>
                 <div class="h-[1px] bg-[#3E4147] my-4"></div>
                 <div>
-                    <div class="chat-user mb-3 flex items-center hover:[]">
-                        <div class="bg-[#FAA619] h-9 w-9 rounded-full flex items-center justify-center">
-                            <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
+                    @for (message of messages; track $index) {
+                        <div class="chat-user mb-3 flex items-center hover:[]">
+                            <div class="bg-[#FAA619] h-9 w-9 rounded-full flex items-center justify-center">
+                                <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
+                            </div>
+                            <div class="text-white ml-4 cursor-pointer">
+                                <p class="text-base">{{message.sender_name}} <span class="text-[11px] font-normal ml-2 text-[#939BA4]">Today at 13:56</span></p>
+                                <p class="text-[13px]">{{message.message_text}}</p>
+                            </div>
+                            <div class="flex-[1]"></div>
                         </div>
-                        <div class="text-white ml-4 cursor-pointer">
-                            <p class="text-base">ansar <span class="text-[11px] font-normal ml-2 text-[#939BA4]">Today at 13:56</span></p>
-                            <p class="text-[13px]">Hello</p>
-                        </div>
-                        <div class="flex-[1]"></div>
-                    </div>
-                    <div class="chat-user mb-3 flex items-center hover:[]">
-                        <div class="bg-[#FAA619] h-9 w-9 rounded-full flex items-center justify-center">
-                            <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
-                        </div>
-                        <div class="text-white ml-4 cursor-pointer">
-                            <p class="text-base">tester <span class="text-[11px] font-normal ml-2 text-[#939BA4]">Today at 13:56</span></p>
-                            <p class="text-[13px]">Hello</p>
-                        </div>
-                        <div class="flex-[1]"></div>
-                    </div>
-                    <div class="chat-user mb-3 flex items-center hover:[]">
-                        <div class="bg-[#FAA619] h-9 w-9 rounded-full flex items-center justify-center">
-                            <img class=" h-[70%] " src="../../assets/images/dicord_icon.svg" alt="">
-                        </div>
-                        <div class="text-white ml-4 cursor-pointer">
-                            <p class="text-base">ansar <span class="text-[11px] font-normal ml-2 text-[#939BA4]">Today at 13:56</span></p>
-                            <p class="text-[13px]">Hello</p>
-                        </div>
-                        <div class="flex-[1]"></div>
-                    </div>
-
+                    }
                 </div>
             </div>
         </div>

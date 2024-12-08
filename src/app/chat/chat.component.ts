@@ -3,6 +3,8 @@ import { LayoutWrapperComponent } from '../wrappers/layout-wrapper/layout-wrappe
 import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { DirectMessages } from '../models/direct_messages.model';
+import { DirectMessageService } from '../services/direct-message.service';
 
 @Component({
   selector: 'app-chat',
@@ -20,9 +22,12 @@ export class ChatComponent implements OnInit {
   friend_id!: number;
   loggedData!: User | null;
 
+  messages!: DirectMessages[] | null;
+
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private directMessageService: DirectMessageService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +35,14 @@ export class ChatComponent implements OnInit {
       next: (paramsMap: any) => {
         this.message_id = +paramsMap.params.chat_id;
         this.friend_id = +paramsMap.params.other_user_id;
+
+        this.directMessageService.getMessages(this.friend_id).subscribe();
+
+        this.directMessageService.messagesSubject.subscribe({
+          next: (messages: DirectMessages[] | null) => {
+            this.messages = messages;
+          },
+        });
 
         this.userService
           .getUserData(+paramsMap.params.other_user_id)
