@@ -52,10 +52,14 @@ export class FriendRequestsComponent implements OnInit {
         });
       },
     });
+
+    this.socketService.socket.on('accept_request', () => {
+      this.friendService.getPendingRequests().subscribe();
+    });
   }
 
   private onComingRequest() {
-    this.socketService.socket.on('private_message', () => {
+    this.socketService.socket.on('send_request', () => {
       this.friendService.getPendingRequests().subscribe();
     });
   }
@@ -71,7 +75,7 @@ export class FriendRequestsComponent implements OnInit {
   }
 
   onClickAccept(id: number, receiver_id: number) {
-    this.friendService.acceptFriendRequest(id).subscribe({
+    this.friendService.acceptFriendRequest(id, receiver_id).subscribe({
       next: () => {
         this.friendService.getPendingRequests().subscribe();
         const messageText: string | null = null;
@@ -83,7 +87,7 @@ export class FriendRequestsComponent implements OnInit {
           .subscribe({
             next: (data) => {
               this.dmService.getInitiatedChats().subscribe();
-            }
+            },
           });
       },
     });

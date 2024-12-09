@@ -33,8 +33,8 @@ export class FriendService {
     );
   }
 
-  acceptFriendRequest(id : number){
-    return this.http.patch(this.ACCEPT_REQUEST_URL + id, {});
+  acceptFriendRequest(id : number, receiver_id: number){
+    return this.http.patch(this.ACCEPT_REQUEST_URL + id + "&receiverId=" + receiver_id, {});
   }
 
   deleteFriendRequest(id : number){
