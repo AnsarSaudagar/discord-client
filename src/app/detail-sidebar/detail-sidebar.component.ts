@@ -3,11 +3,12 @@ import { FriendService } from '../services/friend.service';
 import { DirectMessageService } from '../services/direct-message.service';
 import { Chats } from '../models/chats.model';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-detail-sidebar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './detail-sidebar.component.html',
   styleUrl: './detail-sidebar.component.css',
 })
@@ -23,6 +24,8 @@ export class DetailSidebarComponent implements OnInit {
     this.dmService.getInitiatedChats().subscribe();
     this.dmService.chatsSubject.subscribe({
       next: (chats: Chats[]) => {
+        console.log(chats);
+        
         this.chats = chats;
       },
     });

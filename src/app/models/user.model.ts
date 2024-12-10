@@ -7,4 +7,5 @@ export interface User {
   dob?: string;
   created_at?: Date | string;
   updated_at?: Date | string;
+  profilePicture?: string;
 }
