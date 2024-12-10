@@ -6,6 +6,7 @@ import { LoginCredentials, LoginResponse } from '../models/login.model';
 import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { CacheService } from '../services/cache.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private cacheService :CacheService
   ) {}
 
   signup(user: User) {
@@ -64,6 +66,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem('id');
+    localStorage.removeItem('profile_color');
     this.user.next(null);
     clearTimeout(this.tokenExpirationTimer);
     this.router.navigateByUrl('/auth/login');
@@ -78,6 +81,10 @@ export class AuthService {
   private handleAuthentication(token: string) {
     const decodedToken = this.decodeToken(token);
     const expirationTime = new Date(decodedToken.exp * 1000);
+
+    this.cacheService.getUserProfileColor(decodedToken.id).subscribe((colorData : any) => {
+      localStorage.setItem('profile_color', colorData.color);
+    })
 
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem('id', decodedToken.id);

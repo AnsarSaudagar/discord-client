@@ -24,8 +24,6 @@ export class DetailSidebarComponent implements OnInit {
     this.dmService.getInitiatedChats().subscribe();
     this.dmService.chatsSubject.subscribe({
       next: (chats: Chats[]) => {
-        console.log(chats);
-        
         this.chats = chats;
       },
     });

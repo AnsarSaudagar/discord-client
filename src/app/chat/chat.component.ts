@@ -8,11 +8,13 @@ import { DirectMessageService } from '../services/direct-message.service';
 import { FormatDatePipe } from '../shared/pipes/format-date.pipe';
 import { FormsModule } from '@angular/forms';
 import { SocketService } from '../services/socket.service';
+import { CacheService } from '../services/cache.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [LayoutWrapperComponent, FormatDatePipe, FormsModule],
+  imports: [LayoutWrapperComponent, FormatDatePipe, FormsModule, CommonModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
   host: {
@@ -20,19 +22,22 @@ import { SocketService } from '../services/socket.service';
   },
 })
 export class ChatComponent implements OnInit {
-  friendData!: User;
+  friendData!: User | null | null;
   message_id!: number;
   friend_id!: number;
   loggedData!: User | null;
   message: string | null = null;
 
   messages!: DirectMessages[] | null;
+  userColor: string | null = '';
+  userId: number | null | string = null;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
     private directMessageService: DirectMessageService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private cacheService: CacheService
   ) {}
 
   ngOnInit(): void {
@@ -58,8 +63,21 @@ export class ChatComponent implements OnInit {
           .subscribe({
             next: (user_data: User) => {
               this.friendData = user_data;
+              this.cacheService
+                .getUserProfileColor(user_data.id)
+                .subscribe((colorData: any) => {
+                  if (!this.friendData) return;
+                  this.friendData.profilePictureColor = colorData.color;
+                });
             },
           });
+
+        this.userColor = localStorage.getItem('profile_color')
+          ? localStorage.getItem('profile_color')
+          : '#FAA619';
+        if (localStorage.getItem('id')) {
+          this.userId = Number(localStorage.getItem('id'));
+        }
       },
     });
   }
