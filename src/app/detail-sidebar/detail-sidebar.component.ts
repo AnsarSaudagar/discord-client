@@ -4,6 +4,8 @@ import { DirectMessageService } from '../services/direct-message.service';
 import { Chats } from '../models/chats.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-detail-sidebar',
@@ -14,19 +16,25 @@ import { CommonModule } from '@angular/common';
 })
 export class DetailSidebarComponent implements OnInit {
   chats: Chats[] = [];
-  profileColor : string | null = localStorage.getItem("profile_color");
+  profileColor : any = localStorage.getItem("profile_color");
+  profileName : any  = "";
   constructor(
     private dmService: DirectMessageService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+
+    this.userService.userData.subscribe((data: User | null) => {
+      this.profileColor = data?.profilePictureColor;
+      this.profileName = data?.username;
+    });
+
     this.dmService.getInitiatedChats().subscribe();
     this.dmService.chatsSubject.subscribe({
       next: (chats: Chats[]) => {
         this.chats = chats;
-        console.log(chats);
-        
       },
     });
   }

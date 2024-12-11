@@ -20,6 +20,8 @@ export class UserService {
   getLoggedUserData(){
     return this.http.get<User>(this.LOGGED_DATA_URL).pipe(
       tap((user: User) => {
+        const profile_color : any = localStorage.getItem("profile_color");
+        user.profilePictureColor = profile_color;
         this.userData.next(user);
       })
     );
