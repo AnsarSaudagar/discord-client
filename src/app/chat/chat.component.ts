@@ -32,6 +32,8 @@ export class ChatComponent implements OnInit {
   userColor: string | null = '';
   userId: number | null | string = null;
 
+  hideSidebar : boolean = true;
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -68,6 +70,7 @@ export class ChatComponent implements OnInit {
                 .subscribe((colorData: any) => {
                   if (!this.friendData) return;
                   this.friendData.profilePictureColor = colorData.color;
+                  
                 });
             },
           });
