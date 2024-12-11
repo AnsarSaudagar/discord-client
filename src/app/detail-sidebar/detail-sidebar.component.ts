@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DetailSidebarComponent implements OnInit {
   chats: Chats[] = [];
-
+  profileColor : string | null = localStorage.getItem("profile_color");
   constructor(
     private dmService: DirectMessageService,
     private router: Router
@@ -25,6 +25,8 @@ export class DetailSidebarComponent implements OnInit {
     this.dmService.chatsSubject.subscribe({
       next: (chats: Chats[]) => {
         this.chats = chats;
+        console.log(chats);
+        
       },
     });
   }
