@@ -11,11 +11,12 @@ import { CommonModule, JsonPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { DotLoaderComponent } from '../../shared/components/dot-loader/dot-loader.component';
+import { AlertComponent } from '../../shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, DotLoaderComponent],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, DotLoaderComponent, AlertComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   host: {
