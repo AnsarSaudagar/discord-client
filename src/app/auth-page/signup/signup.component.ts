@@ -7,14 +7,14 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, JsonPipe],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   host: {
@@ -24,6 +24,9 @@ import { AuthService } from '../auth.service';
 export class SignupComponent {
   signupForm: FormGroup;
   isSubmitted: boolean = false;
+  errorMessage = "";
+  showLoader : boolean = false;
+  registered : boolean = false;
 
   constructor(
     private router: Router,
@@ -39,8 +42,10 @@ export class SignupComponent {
   }
 
   onContinue() {
+    this.errorMessage = "";
     this.isSubmitted = true;
     if (this.signupForm.valid) {
+      this.showLoader = true;
       this.isSubmitted = false;
       const formValues: User = this.signupForm.value;
 
@@ -48,9 +53,19 @@ export class SignupComponent {
 
       this.authService.signup(formValues).subscribe({
         next: (user: User) => {
-          this.signupForm.reset();
-          this.router.navigate(['auth', 'login']);
-        },
+          this.registered = true;
+          setTimeout(() => {
+            this.showLoader = true;
+            this.signupForm.reset();
+            this.router.navigate(['auth', 'login']);
+          }, 700);
+        }, 
+        error: (err) => {
+          setTimeout(() => {
+            this.showLoader = false;
+            this.errorMessage = err.error.detail;
+          }, 700);
+        }
       });
     }
   }
