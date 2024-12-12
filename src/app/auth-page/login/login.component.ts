@@ -10,11 +10,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginCredentials, LoginResponse } from '../../models/login.model';
+import { AlertComponent } from '../../shared/components/alert/alert.component';
+import { DotLoaderComponent } from '../../shared/components/dot-loader/dot-loader.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, ReactiveFormsModule],
+  imports: [CommonModule, HttpClientModule, ReactiveFormsModule, AlertComponent, DotLoaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   host: {
@@ -24,6 +26,8 @@ import { LoginCredentials, LoginResponse } from '../../models/login.model';
 export class LoginComponent {
   loginForm: FormGroup;
   isSubmitted: boolean = false;
+  showError = false;
+  showLoader = false;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -42,11 +46,19 @@ export class LoginComponent {
   onClickLogin() {
     this.isSubmitted = true;
     if (this.loginForm.valid) {
+      this.showLoader = true;
       const formValues: LoginCredentials = this.loginForm.value;
       this.authService.login(formValues).subscribe({
         next: (login_res: LoginResponse) => {
-          this.router.navigate(['/home']);
+          setTimeout(() => {
+            this.router.navigate(['/home']);
+            this.showLoader = false;
+          }, 700);
         },
+        error: (err) => {
+          this.showError = true;
+          this.showLoader = false;
+        }
       });
     }
   }

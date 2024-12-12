@@ -1,8 +1,11 @@
 <div
-    class="h-full w-full bg-[#303338] flex flex-col items-center pt-6 overflow-auto rounded-[3px] lg:animate-fadeSlideIn">
+    class="h-full w-full bg-[#303338] flex flex-col items-center pt-6 overflow-auto rounded-[3px] lg:animate-fadeSlideIn relative">
     <img id="logo" class="lg:hidden" src="../../assets/images/discord_logo.svg" alt="">
     <h1 class="text-white text-2xl font-medium mt-5">Welcome Back</h1>
     <p class="text-[15px] text-[#B5BAC0]">We're so excited to see you again!</p>
+    @if (showError) {
+        <app-alert alertType="danger" alertMessage="Email or Password is wrong" ></app-alert>
+    }
     <form [formGroup]="loginForm" class="w-full px-6 mt-3">
         <div class="w-full ">
             <label for="email-input" class="font-semibold  text-xs text-[#B5BAC0]"
@@ -34,7 +37,13 @@
                 type="password" formControlName="password">
         </div>
 
-        <button class="bg-[#5765F2] text-white w-full mt-4 h-10 rounded-[3px]" (click)="onClickLogin()">Log In</button>
+        <button class="bg-[#5765F2] text-white w-full mt-4 h-10 rounded-[3px]" (click)="onClickLogin()">
+            @if (showLoader) {
+                <app-dot-loader></app-dot-loader>
+            }@else {
+                Log In
+            }
+        </button>
         <p class="text-[#B5BAC0] text-xs mt-4">Need an account? <span
                 class="text-[#04A9FB] hover:underline cursor-pointer" (click)="onClickRegister()">Register </span>
         </p>

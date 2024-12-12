@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css',
   host:{
-    class: "absolute top-5 lg:animate-fadeSlideIn w-full left-[10%]"
+    class: "absolute top-5 lg:animate-fadeSlideIn w-full left-[10%] "
   }
 })
 export class AlertComponent {
