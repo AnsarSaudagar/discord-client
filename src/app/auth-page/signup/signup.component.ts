@@ -10,11 +10,12 @@ import { User } from '../../models/user.model';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
+import { DotLoaderComponent } from '../../shared/components/dot-loader/dot-loader.component';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, JsonPipe],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, DotLoaderComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   host: {
