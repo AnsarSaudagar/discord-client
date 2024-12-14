@@ -10,11 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { SocketService } from '../services/socket.service';
 import { CacheService } from '../services/cache.service';
 import { CommonModule } from '@angular/common';
+import { CallSectionComponent } from '../call-section/call-section.component';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [LayoutWrapperComponent, FormatDatePipe, FormsModule, CommonModule],
+  imports: [LayoutWrapperComponent, FormatDatePipe, FormsModule, CommonModule, CallSectionComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
   host: {
@@ -27,6 +28,7 @@ export class ChatComponent implements OnInit {
   friend_id!: number;
   loggedData!: User | null;
   message: string | null = null;
+  isVideoCall : boolean = false;
 
   messages!: DirectMessages[] | null;
   userColor: string | null = '';
