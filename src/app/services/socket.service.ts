@@ -10,9 +10,9 @@ export class SocketService {
   private SOCKET_URL = environment.SOCKET_URL;
 
   startServer(){
-    this._socket = io(this.SOCKET_URL, {
-      query: { userId: localStorage.getItem("id") }, 
-    });
+    // this._socket = io(this.SOCKET_URL, {
+    //   query: { userId: localStorage.getItem("id") }, 
+    // });
   }
 
   get socket(){
